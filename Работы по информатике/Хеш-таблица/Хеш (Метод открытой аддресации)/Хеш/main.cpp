@@ -68,7 +68,7 @@ void CreateHash() {
     }
     delete[] m;
     m = t;
-    cout << "Хеш-таблица создана! " << "Коллизий: " << collision << '\n';
+    cout << "Хеш-таблица создана! " << "Количество коллизий: " << collision << '\n';
 }
 
 void ShowHash() {
