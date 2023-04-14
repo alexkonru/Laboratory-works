@@ -160,42 +160,42 @@ void AddElement() {
     int l;
     cout << "¬ведите номер нового элемента: ";
     cin >> l;
-    Node* q = new Node;///генерирую новый элемент
-    ChangeValue(q->human.fio, f[RandomNuberSensor()] + ' ' + i[RandomNuberSensor()] + ' ' + o[RandomNuberSensor()]);//
-    ChangeValue(q->human.dateofbirth, d[RandomNuberSensor()]);//
-    ChangeValue(q->human.address, g[RandomNuberSensor()]);///
-    if (l > n) {//если новый элемент должен находитьс€ в ещЄ несуществующем ключе, то нужно изменить размер массива
-        LinkedList* t = new LinkedList[l]{};//создаЄм новый массив
+    Node* q = new Node;
+    ChangeValue(q->human.fio, f[RandomNuberSensor()] + ' ' + i[RandomNuberSensor()] + ' ' + o[RandomNuberSensor()]);
+    ChangeValue(q->human.dateofbirth, d[RandomNuberSensor()]);
+    ChangeValue(q->human.address, g[RandomNuberSensor()]);
+    if (l > n) {
+        LinkedList* t = new LinkedList[l]{};
         for (int k = 0; k < n; k++) {
-            t[k] = m[k];//передаЄм значени€ из старого
+            t[k] = m[k];
         }
         delete[] m;
         m = t;
         n = l;
-        q->next = NULL;//должен указывать на NULL, так как первый элемент под данным ключом
-        m[l - 1].head = q;//задаЄм новый элемент в получивщийс€ массив, в новую €чейку
+        q->next = NULL;
+        m[l - 1].head = q;
     }
-    else if (m[l - 1].head != NULL && strcmp(m[l - 1].head->human.fio, "NULL")) {//если первый элемент под нужным ключом не NULL и не не помечен как удалЄнный ("NULL") 
-        m[l - 1].cur = m[l - 1].head;//устанавливаем текущий на голову
-        while (m[l - 1].cur->next != NULL && strcmp(m[l - 1].cur->next->human.fio, "NULL")) {//пока следующий не NULL или "NULL"
-            m[l - 1].cur = m[l - 1].cur->next;//получаю следующий
+    else if (m[l - 1].head != NULL && strcmp(m[l - 1].head->human.fio, "NULL")) { 
+        m[l - 1].cur = m[l - 1].head;
+        while (m[l - 1].cur->next != NULL && strcmp(m[l - 1].cur->next->human.fio, "NULL")) {
+            m[l - 1].cur = m[l - 1].cur->next;
         }
-        if (m[l - 1].cur->next == NULL) {//если слудующий NULL
-            q->next = NULL;//обращатьс€ должен на NULL, так как конец списка
+        if (m[l - 1].cur->next == NULL) {
+            q->next = NULL;
         }
-        else {//если "NULL"
-            q->next = m[l - 1].cur->next->next;//обращаетс€ на следующий->следующий элемент
+        else {
+            q->next = m[l - 1].cur->next->next;
         }
-        m[l - 1].cur->next = q;//мен€ем значение следующего элемента
+        m[l - 1].cur->next = q;
     }
-    else {//если сразу NULL или "NULL"
+    else {
         if (m[l - 1].head == NULL) {
-            q->next = NULL;//обращаетс€ на NULL, так как конец списка
-            m[l - 1].head = q;//задаЄм голове значение
+            q->next = NULL;
+            m[l - 1].head = q;
         }
-        else {//если "NULL"
-            q->next = m[l - 1].head->next;//задаЄм значение слудующего
-            m[l - 1].head = q;//задаЄм значение голове
+        else {
+            q->next = m[l - 1].head->next;
+            m[l - 1].head = q;
         }
     }
 }
