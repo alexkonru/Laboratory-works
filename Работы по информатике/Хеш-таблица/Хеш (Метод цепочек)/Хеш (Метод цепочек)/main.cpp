@@ -116,9 +116,7 @@ int GetPosibleKey() {
         s += date[k + 1];
         key += stoi(s);
     }
-    key *= 0.75;
-    key -= (int)key;
-    return (int)(n * key);
+    return (int)(key % n);
 }
 
 void CreateHash() {
