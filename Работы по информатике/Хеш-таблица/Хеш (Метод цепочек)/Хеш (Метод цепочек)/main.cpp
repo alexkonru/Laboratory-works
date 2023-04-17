@@ -33,6 +33,70 @@ struct LinkedList {
 
 LinkedList* m = new LinkedList;
 
+void ChangeValue(char* c, string r);
+int RandomNuberSensor();
+int GetPosibleKey();
+void CreateHash();
+void ShowHash();
+void DeleteFromHash();
+void FindIntoHash();
+void AddElement();
+void RestoreHash();
+void WriteHash();
+
+
+int main() {
+    srand(time(NULL));
+    setlocale(LC_ALL, "Rus");
+    SetConsoleOutputCP(866);
+    SetConsoleCP(866);
+    int n;
+    bool f = true;
+    while (f) {
+        cout << "МЕНЮ\n";
+        cout << "1. Создать Хеш-таблицу\n";
+        cout << "2. Показать Хеш-таблицу\n";
+        cout << "3. Удалить из Хеш-таблицы элемент с выбранной датой рождения\n";
+        cout << "4. Восстановить Хеш-таблицу из файла\n";
+        cout << "5. Найти номер элемента в Хеш-таблице по дате рождения\n";
+        cout << "6. Записать Хеш-таблицу в файл\n";
+        cout << "7. Добавить элемент в Хеш-таблицу\n";
+        cout << "8. Выход из программы\n";
+        cin >> n;
+        system("cls");
+        switch (n) {
+        case(1):
+            CreateHash();
+            break;
+        case(2):
+            ShowHash();
+            break;
+        case(3):
+            DeleteFromHash();
+            break;
+        case(4):
+            RestoreHash();
+            break;
+        case(5):
+            FindIntoHash();
+            break;
+        case(6):
+            WriteHash();
+            break;
+        case(7):
+            AddElement();
+            break;
+        case(8):
+            f = false;;
+            break;
+        default:
+            cout << "Error!";
+            break;
+        }
+    }
+    return 0;
+}
+
 void ChangeValue(char* c, string r) {
     for (int k = 0; k < r.length(); k++) {
         c[k] = r[k];
@@ -258,56 +322,4 @@ void WriteHash() {
     else {
         cout << "Хеш-таблица пуста, операция не возможна!\n";
     }
-}
-
-int main() {
-    srand(time(NULL));
-    setlocale(LC_ALL, "Rus");
-    SetConsoleOutputCP(866);
-    SetConsoleCP(866);
-    int n;
-    bool f = true;
-    while (f) {
-        cout << "МЕНЮ\n";
-        cout << "1. Создать Хеш-таблицу\n";
-        cout << "2. Показать Хеш-таблицу\n";
-        cout << "3. Удалить из Хеш-таблицы элемент с выбранной датой рождения\n";
-        cout << "4. Восстановить Хеш-таблицу из файла\n";
-        cout << "5. Найти номер элемента в Хеш-таблице по дате рождения\n";
-        cout << "6. Записать Хеш-таблицу в файл\n";
-        cout << "7. Добавить элемент в Хеш-таблицу\n";
-        cout << "8. Выход из программы\n";
-        cin >> n;
-        system("cls");
-        switch (n) {
-        case(1):
-            CreateHash();
-            break;
-        case(2):
-            ShowHash();
-            break;
-        case(3):
-            DeleteFromHash();
-            break;
-        case(4):
-            RestoreHash();
-            break;
-        case(5):
-            FindIntoHash();
-            break;
-        case(6):
-            WriteHash();
-            break;
-        case(7):
-            AddElement();
-            break;
-        case(8):
-            f = false;;
-            break;
-        default:
-            cout << "Error!";
-            break;
-        }
-    }
-    return 0;
 }
