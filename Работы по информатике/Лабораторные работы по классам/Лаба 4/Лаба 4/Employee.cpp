@@ -50,7 +50,7 @@ ostream& operator<<(ostream& out, const Employee& e)
 	out << "\nName: " << e.name;
 	out << "\nAge: " << e.age;
 	out << "\nDoljnosty: " << e.dol;
-	out << "\nOklad: " << e.okl;
+	out << "\nZP: " << e.okl*1.2;
 	out << "\n";
 	return out;
 }
