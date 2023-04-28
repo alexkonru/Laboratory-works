@@ -20,9 +20,15 @@ int main()
 	b.pop_front();
 	cout << endl << b << endl;
 	LinkedList c(3);
-	cin >> c;
 	cout << endl << c << endl;
 	LinkedList d = c + b;
 	cout << endl << d << endl;
+	d = d + 10;
+	cout << endl << d << endl;
+	cout << *(a.first()) << endl;
+	Iterator i = a.first();
+	++i;
+	cout << *i << endl;
+	for (i = a.first(); i != a.last(); ++i) cout << *i << endl;
 	return 0;
 }
