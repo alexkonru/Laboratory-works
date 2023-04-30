@@ -1,0 +1,6 @@
+﻿  main.cpp
+main.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __cdecl LinkedList<int>::LinkedList<int>(int,int)" (??0?$LinkedList@H@@QEAA@HH@Z) в функции main.
+main.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __cdecl LinkedList<int>::~LinkedList<int>(void)" (??1?$LinkedList@H@@QEAA@XZ) в функции main.
+main.obj : error LNK2019: ссылка на неразрешенный внешний символ "class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl operator<<(class std::basic_ostream<char,struct std::char_traits<char> > &,class LinkedList<int> const &)" (??6@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AEAV01@AEBV?$LinkedList@H@@@Z) в функции main.
+main.obj : error LNK2019: ссылка на неразрешенный внешний символ "class std::basic_istream<char,struct std::char_traits<char> > & __cdecl operator>>(class std::basic_istream<char,struct std::char_traits<char> > &,class LinkedList<int> &)" (??5@YAAEAV?$basic_istream@DU?$char_traits@D@std@@@std@@AEAV01@AEAV?$LinkedList@H@@@Z) в функции main.
+C:\Рабочий стол\infa\Семестр 2\Работы по информатике\Лабораторные работы по классам\Лаба 7\x64\Debug\Лаба 7.exe : fatal error LNK1120: неразрешенных внешних элементов: 4
