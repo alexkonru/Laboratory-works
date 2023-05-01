@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{f7220ee2-0d4c-49c5-8a81-12c85c1c18ca}</ProjectGuid>
-    <RootNamespace>Лаба8</RootNamespace>
+    <ProjectGuid>{099f24d4-28f5-4781-9021-dc5428626f4e}</ProjectGuid>
+    <RootNamespace>Лаба6черезстек</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,20 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Abiturient.h" />
-    <ClInclude Include="Dialog.h" />
-    <ClInclude Include="Event.h" />
-    <ClInclude Include="Object.h" />
-    <ClInclude Include="Person.h" />
-    <ClInclude Include="Vector.h" />
+    <ClInclude Include="LinkedList.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Abiturient.cpp" />
-    <ClCompile Include="Dialog.cpp" />
+    <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Object.cpp" />
-    <ClCompile Include="Person.cpp" />
-    <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
