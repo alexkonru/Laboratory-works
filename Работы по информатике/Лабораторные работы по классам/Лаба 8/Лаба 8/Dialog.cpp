@@ -1,6 +1,7 @@
 #include "Dialog.h"
 #include "Vector.h"
 #include "Event.h"
+#include "Object.h"
 #include <iostream>
 using namespace std;
 Dialog::Dialog(void) :
@@ -75,7 +76,7 @@ void Dialog::HandleEvent(TEvent& event)
 		{
 		case cmMake://создание группы
 			size = event.a; //размер группы
-			beg = new Object * [size];//выделяем память под массив указателей
+			beg = new Object*[event.a];//выделяем память под массив указателей
 			cur = 0; //текущая позиция
 			ClearEvent(event);//очищаем событие
 			break;
