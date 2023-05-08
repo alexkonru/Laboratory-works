@@ -5,17 +5,6 @@
 #include <iostream>
 using namespace std;
 
-//void f1(Person& c)
-//{
-//	c.Set_name("Alex");
-//	cout << c;
-//}
-//
-//Person f2()
-//{
-//	Employee e("Mia", 26, "Engineer", 60.600);
-//	return e;
-//}
 
 int main()
 {
