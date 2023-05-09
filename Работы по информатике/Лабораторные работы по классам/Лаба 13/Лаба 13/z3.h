@@ -4,6 +4,8 @@
 #include "Pair.h"
 using namespace std;
 typedef set<Pair>Tst;
+typedef Tst::iterator it;
+
 
 class z3
 {

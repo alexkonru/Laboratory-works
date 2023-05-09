@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <stack>
+#include <algorithm>
+#include <numeric>
 #include "Pair.h"
 using namespace std;
 typedef stack<Pair>TSt;

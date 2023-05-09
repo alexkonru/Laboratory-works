@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <deque>
+#include <algorithm>
+#include <numeric>
 #include "Pair.h"
 using namespace std;
 typedef deque<Pair>TDec;
@@ -22,23 +24,19 @@ public:
     }
     void print(TDec s)
     {
-        TDec::iterator it = s.begin();
-        for (double i = 0; i < s.size(); i++)
-        {
-            cout << i << " : " << *it << " " << endl;
-            it++;
+        if (s.size() > 0) {
+            for_each(s.begin(), s.end(), [](Pair p) {
+                cout << p << '\n';
+                });
         }
+        else {
+            cout << "Список пуст!";
+        }
+        cout << '\n';
     }
     Pair max(TDec s)
     {
-        TDec::iterator it = s.begin();
-        Pair m = *it;
-        for (int i = 1; i < s.size(); i++)
-        {
-            Pair a = *it;
-            if (a >= m) m = a;
-            it++;
-        }
+        Pair m = *max_element(s.begin(), s.end());
         return m;
     }
 
@@ -51,38 +49,24 @@ public:
 
     TDec pop_el(TDec st, Pair f, Pair s)
     {
-        TDec::iterator it = st.begin();
-        for (int i = 1; i < st.size(); i++)
-        {
-            if (*it >= f && *it <= s) st.erase(it);
-            it++;
-        }
-        return st;
+        auto i = remove_if(st.begin(), st.end(), [f, s](Pair p) {
+            return ((f.first <= p.get_first() && p.get_first() <= s.first) || (f.second <= p.get_second() && p.get_second() <= s.second));
+            });
+        st.erase(i, st.end());
     }
 
     Pair sred(TDec st)
     {
-        TDec::iterator it = st.begin();
-        Pair s;
-        int k = st.size();
-        for (int i = 0; i < k; i++)
-        {
-            s = s + *it;
-            it++;
-        }
-        return s / k;
+        Pair Middle = accumulate(st.begin(), st.end(), Pair(0, 0));
+        return Middle;
     }
 
     TDec plus_const(TDec st, Pair s)
     {
-        TDec::iterator it = st.begin();
-        TDec st2;
-        for (int i = 0; i < st.size(); i++)
-        {
-            st2.push_back(s + *it);
-            it++;
+        for (Pair& c : st) {
+            c + s;
         }
-        return st2;
+        return st;
     }
 
     int main()
