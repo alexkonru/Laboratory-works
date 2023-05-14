@@ -1,18 +1,42 @@
 #pragma once
 #include <iostream>
 #include <stack>
+#include <list>
 #include <algorithm>
 #include <numeric>
 #include "Pair.h"
 using namespace std;
-typedef stack<Pair>TSt;
+typedef stack<Pair>Tst;
+typedef list<Pair>Tl;
 
 class z2
 {
 public:
-    TSt make(double n)
+    Tst to_stack(Tl l)
     {
-        TSt s;
+        Tst s;
+        Tl::iterator it = l.begin();
+        int n = l.size();
+        for (int i = 0; i < n; i++)
+        {
+            s.push(*it);
+            it++;
+        }
+        return s;
+    }
+    Tl to_list(Tst s)
+    {
+        Tl l;
+        for (int i = 0; i < s.size(); i++)
+        {
+            l.push_back(s.top());
+            s.pop();
+        }
+        return l;
+    }
+    Tst make(double n)
+    {
+        Tst s;
         Pair a;
         for (double i = 0; i < n; i++)
         {
@@ -21,73 +45,63 @@ public:
         }
         return s;
     }
-    void print(TSt s)
+    void print(Tst st)
     {
-        TSt s2 = s;
-        for (double i = 0; i < s.size(); i++)
-        {
-            cout << s.size()+i << " : " << s2.top() << " " << endl;
-            s2.pop();
+        Tl s = to_list(st);
+        if (s.size() > 0) {
+            for_each(s.begin(), s.end(), [](Pair p) {
+                cout << p << '\n';
+                });
         }
+        else {
+            cout << "Список пуст!";
+        }
+        cout << '\n';
     }
-    Pair max(TSt s)
+    Pair max(Tst st)
     {
-        TSt s2 = s;
-        Pair m = s2.top();
-        s2.pop();
-        for (int i = 1; i < s.size(); i++)
-        {
-            Pair a = s2.top();
-            if (a >= m) m = a;
-            s2.pop();
-        }
+        Tl s = to_list(st);
+        Pair m = *max_element(s.begin(), s.end());
         return m;
     }
 
-    TSt push_back_list(TSt s, Pair el)
+    Tst push_back_list(Tst s, Pair el)
     {
         s.push(el);
         return s;
     }
 
-    TSt pop_el(TSt st, Pair f, Pair s)
+    Tst pop_el(Tst st, Pair f, Pair s)
     {
-        TSt s2;
-        for (int i = 0; i < st.size(); i++)
-        {
-            if (st.top() >= f && st.top() <= s) s2.push(st.top());
-            st.pop();
-        }
-        return s2;
+        Tl l = to_list(st);
+        auto i = remove_if(l.begin(), l.end(), [f, s](Pair p) {
+            return ((f.first <= p.get_first() && p.get_first() <= s.first) || (f.second <= p.get_second() && p.get_second() <= s.second));
+            });
+        l.erase(i, l.end());
+        st = to_stack(l);
+        return st;
     }
 
-    Pair sred(TSt st)
+    Pair sred(Tst st)
     {
-        TSt s2 = st;
-        Pair s;
-        int k = st.size();
-        for (int i = 0; i < k; i++)
-        {
-            s = s + s2.top();
-            s2.pop();
-        }
-        return s / k;
+        Tl l = to_list(st);
+        Pair Middle = accumulate(l.begin(), l.end(), Pair(0, 0));
+        return Middle;
     }
 
-    TSt plus_const(TSt st, Pair s)
+    Tst plus_const(Tst st, Pair s)
     {
-        TSt st2;
-        for (int i = 0; i < st.size(); i++)
-        {
-            st2.push(s + st.top());
-            st.pop();
+        Tl l = to_list(st);
+        for (Pair& c : l) {
+            c + s;
         }
-        return st2;
+        st = to_stack(l);
+        return st;
     }
 
     int main()
     {
-        TSt st;
+        Tst st;
         int n;
         cout << "n = "; cin >> n;
         st = make(n);

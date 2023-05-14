@@ -13,7 +13,7 @@ int main()
     switch (n)
     {
     case 1: z1 Z1 = z1();
-        Z1.main();
+        Z1.main1();
         break;
     case 2: z2 Z2 = z2();
         Z2.main();

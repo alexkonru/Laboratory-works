@@ -1,88 +1,105 @@
 #pragma once
 #include <iostream>
 #include <set>
+#include <list>
+#include <algorithm>
+#include <numeric>
 #include "Pair.h"
 using namespace std;
-typedef set<Pair>Tst;
-typedef Tst::iterator it;
-
+typedef set<Pair>TSt;
+typedef list<Pair>Tl;
+TSt::iterator it1;
+Tl::iterator it2;
 
 class z3
 {
 public:
-    TSt make(double n)
+    TSt to_set(Tl l)
     {
         TSt s;
-        Pair a;
-        for (double i = 0; i < n; i++)
+        it2 = l.begin();
+        int n = l.size();
+        for (int i = 0; i < n; i++)
         {
-            cin >> a;
-            s.push(a);
+            s.insert(*it2);
+            it2++;
         }
         return s;
     }
-    void print(TSt s)
+    Tl to_list(TSt s)
     {
-        TSt s2 = s;
-        for (double i = 0; i < s.size(); i++)
+        Tl l;
+        it1 = s.begin();
+        for (int i = 0; i < s.size(); i++)
         {
-            cout << s2.top() << " " << endl;
-            s2.pop();
+            l.push_back(*it1);
+            it1++;
         }
+        return l;
     }
-    Pair max(TSt s)
+    TSt make(int n)
     {
-        TSt s2 = s;
-        Pair m = s2.top();
-        s2.pop();
-        for (int i = 1; i < s.size(); i++)
+        TSt s;
+        Pair a;
+        for (int i = 0; i < n; i++)
         {
-            Pair a = s2.top();
-            if (a >= m) m = a;
-            s2.pop();
+            cin >> a;
+            s.insert(a);
         }
+        return s;
+    }
+    void print(TSt st)
+    {
+        Tl s = to_list(st);
+        if (s.size() > 0) {
+            for_each(s.begin(), s.end(), [](Pair p) {
+                cout << p << '\n';
+                });
+        }
+        else {
+            cout << "Список пуст!";
+        }
+        cout << '\n';
+    }
+    Pair max(TSt st)
+    {
+        Tl s = to_list(st);
+        Pair m = *max_element(s.begin(), s.end());
         return m;
     }
 
     TSt push_back_list(TSt s, Pair el)
     {
-        s.push(el);
+        s.insert(el);
         return s;
     }
 
     TSt pop_el(TSt st, Pair f, Pair s)
     {
-        TSt s2;
-        for (int i = 0; i < st.size(); i++)
-        {
-            if (st.top() >= f && st.top() <= s) s2.push(st.top());
-            st.pop();
-        }
-        return s2;
+        Tl l = to_list(st);
+        auto i = remove_if(l.begin(), l.end(), [f, s](Pair p) {
+            return ((f.first <= p.get_first() && p.get_first() <= s.first) || (f.second <= p.get_second() && p.get_second() <= s.second));
+            });
+        l.erase(i, l.end());
+        st = to_set(l);
+        return st;
     }
 
     Pair sred(TSt st)
     {
-        TSt s2 = st;
-        Pair s;
-        int k = st.size();
-        for (int i = 0; i < k; i++)
-        {
-            s = s + s2.top();
-            s2.pop();
-        }
-        return s / k;
+        Tl l = to_list(st);
+        Pair Middle = accumulate(l.begin(), l.end(), Pair(0, 0));
+        return Middle;
     }
 
     TSt plus_const(TSt st, Pair s)
     {
-        TSt st2;
-        for (int i = 0; i < st.size(); i++)
-        {
-            st2.push(s + st.top());
-            st.pop();
+        Tl l = to_list(st);
+        for (Pair& c : l) {
+            c + s;
         }
-        return st2;
+        st = to_set(l);
+        return st;
     }
 
     int main()

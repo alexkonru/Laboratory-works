@@ -5,9 +5,8 @@
 #include <numeric>
 #include "Pair.h"
 using namespace std;
-typedef deque<Pair>TDec;
-typedef TDec::iterator it;
 
+typedef deque<Pair>TDec;
 class z1
 {
 public:
@@ -53,6 +52,7 @@ public:
             return ((f.first <= p.get_first() && p.get_first() <= s.first) || (f.second <= p.get_second() && p.get_second() <= s.second));
             });
         st.erase(i, st.end());
+        return st;
     }
 
     Pair sred(TDec st)
@@ -69,10 +69,10 @@ public:
         return st;
     }
 
-    int main()
+    int main1()
     {
         TDec st;
-        int n;
+       /* int n;
         cout << "n = "; cin >> n;
         st = make(n);
         print(st);
@@ -86,7 +86,7 @@ public:
         print(st);
         Pair sr = sred(st);
         st = plus_const(st, sr);
-        print(st);
+        print(st);*/
         return 0;
     }
 };
